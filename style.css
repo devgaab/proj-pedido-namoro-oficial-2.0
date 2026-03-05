@@ -1,0 +1,283 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+:root {
+    --primary: #fff;
+    --bg-color: #ff9a9e;
+    --bg-envelope-color: #f5edd1;
+    --envelope-tab: #FCCE9A;
+    --envelope-cover: #F9B97B;
+    --shadow-color: rgba(0, 0, 0, 0.4);
+    --txt-color: #444;
+    --heart-color: #ff3366;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto Slab", serif;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+/* container centralizado */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* envelope */
+.envelope-wrapper {
+    background: var(--bg-envelope-color);
+    box-shadow: 0 0 40px var(--shadow-color);
+    cursor: pointer;
+}
+
+.envelope {
+    position: relative;
+    width: min(298px, 90vw);
+    height: min(240px, 70vh);
+}
+
+.envelope::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    z-index: 2;
+
+    border-top: 150px solid var(--envelope-tab);
+    border-right: 150px solid transparent;
+    border-left: 150px solid transparent;
+
+    transform-origin: top;
+
+    transition: all 0.5s ease-in-out 0.7s;
+}
+
+.envelope::after {
+    content: "";
+
+    position: absolute;
+    z-index: 1;
+
+    border-top: 140px solid transparent;
+    border-right: 150px solid var(--envelope-cover);
+    border-bottom: 112px solid var(--envelope-cover);
+    border-left: 150px solid var(--envelope-cover);
+}
+
+/* carta */
+.letter {
+    position: absolute;
+    right: 12%;
+    bottom: 0;
+    width: 75%;
+    height: 100%;
+    background: white;
+    text-align: center;
+    transition: all 1s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 12px;
+}
+
+.text {
+    font-size: 12px;
+    height: 175px;
+    overflow-y: auto;
+    text-align: left;
+    line-height: 16px;
+    overflow-y: auto;
+
+    /* esconder scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+h1 {
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.letter::-webkit-scrollbar {
+    display: none;
+}
+
+/* animação abrir */
+.flap .envelope::before {
+    transform: rotateX(180deg);
+    z-index: 0;
+}
+
+.flap .letter {
+    bottom: 170px;
+    transform: scale(1.2);
+    z-index: 1;
+    transition-delay: 1s;
+}
+
+/* coração */
+.heart {
+    position: absolute;
+    top: 56%;
+    left: 50%;
+    width: 22px;
+    height: 22px;
+    background: var(--heart-color);
+    transform: translate(-50%, -20%) rotate(45deg);
+    z-index: 4;
+    cursor: pointer;
+    animation: heartbeat 1.5s infinite;
+}
+
+.heart:before,
+.heart:after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 22px;
+    height: 22px;
+
+    background: var(--heart-color);
+
+    border-radius: 50%;
+
+}
+
+.heart:before {
+    top: -10px;
+}
+
+.heart:after {
+    right: 10px;
+}
+
+@keyframes heartbeat {
+
+    0% {
+        transform: translate(-50%, -20%) rotate(45deg) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -20%) rotate(45deg) scale(1.2);
+    }
+
+    100% {
+        transform: translate(-50%, -20%) rotate(45deg) scale(1);
+    }
+
+}
+
+/* corações flutuando */
+.floating-hearts {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.floating-hearts span {
+
+    position: absolute;
+
+    bottom: -50px;
+
+    color: #ff4d6d;
+
+    font-size: 24px;
+
+    animation: float 8s linear infinite;
+
+}
+
+.floating-hearts span:nth-child(1) {
+    left: 10%;
+}
+
+.floating-hearts span:nth-child(2) {
+    left: 30%;
+    animation-duration: 10s;
+}
+
+.floating-hearts span:nth-child(3) {
+    left: 50%;
+    animation-duration: 6s;
+}
+
+.floating-hearts span:nth-child(4) {
+    left: 70%;
+    animation-duration: 9s;
+}
+
+.floating-hearts span:nth-child(5) {
+    left: 90%;
+    animation-duration: 7s;
+}
+
+@keyframes float {
+
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+
+}
+
+/* confete */
+.confetti-container {
+
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+
+}
+
+.confetti {
+
+    position: absolute;
+
+    font-size: 18px;
+
+    color: #ff3366;
+
+    animation: confettiFall 3s linear forwards;
+
+}
+
+@keyframes confettiFall {
+
+    0% {
+        transform: translateY(-10vh) rotate(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+
+}
