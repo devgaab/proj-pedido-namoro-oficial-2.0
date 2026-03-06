@@ -20,11 +20,14 @@
 body {
     font-family: "Roboto Slab", serif;
     background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-    min-height: 100vh;
+
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow-x: hidden;
+
+    /* overflow-x: hidden; */
+    overflow: hidden;
 }
 
 /* container centralizado */
@@ -40,6 +43,9 @@ body {
     background: var(--bg-envelope-color);
     box-shadow: 0 0 40px var(--shadow-color);
     cursor: pointer;
+
+    /* remover destaque azul "overlay" */
+    -webkit-tap-highlight-color: transparent;
 }
 
 .envelope {
